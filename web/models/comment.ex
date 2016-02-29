@@ -1,14 +1,15 @@
-defmodule PhoenixBlog.Post do
+defmodule PhoenixBlog.Comment do
   use PhoenixBlog.Web, :model
 
-  schema "posts" do
-    field :title, :string
+  schema "comments" do
+    field :name, :string
     field :content, :string
-    has_many :comments, PhoenixBlog.Comment
+    belongs_to :post, PhoenixBlog.Post
+
     timestamps
   end
 
-  @required_fields ~w(title content)
+  @required_fields ~w(name content)
   @optional_fields ~w()
 
   @doc """
