@@ -8,10 +8,6 @@ defmodule PhoenixBlog.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
-
   scope "/", PhoenixBlog do
     pipe_through :browser # Use the default browser stack
     resources "/posts", PostController do
@@ -20,10 +16,7 @@ defmodule PhoenixBlog.Router do
     get "/", PageController, :index
     get "/hello", HelloController, :index
     get "/hello/:messenger", HelloController, :show
+    resources "/users", UserController
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", PhoenixBlog do
-  #   pipe_through :api
-  # end
 end
